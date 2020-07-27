@@ -1,0 +1,7 @@
+{
+  "name": "DienThoaiTinDung",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
