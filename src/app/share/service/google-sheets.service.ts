@@ -1,0 +1,18 @@
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class GoogleSheetsService {
+
+    constructor(private http: HttpClient) {
+    }
+
+    findAll(): Observable<any> {
+        return this.http.get(
+            'https://content-sheets.googleapis.com/v4/spreadsheets/1A8_oc6LId0_tQSy7VbcmGTJdRFjgYcsFQoJfJWKw_kM/values/A2%3AF10000?key=AIzaSyD0y7qJ_zFRKlAb6Fmu2sYbowlhAOOtpy4&prettyPrint=false'
+        );
+    }
+}

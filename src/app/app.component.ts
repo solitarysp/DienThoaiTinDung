@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       icon: 'heart'
     },
     {
-      title: 'Danh sach bao hanh',
+      title: 'Danh sách bảo hành',
       url: '/list-guarantee',
       icon: 'heart'
     }

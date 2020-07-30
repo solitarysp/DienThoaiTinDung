@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GoogleSheetsService} from '../../share/service/google-sheets.service';
 import {SheetsGoogle} from '../../share/model/sheets-google';
+import {LocalStorage} from '../../share/constant/local-storage.enum';
 
 @Component({
     selector: 'app-list-guarantee',
@@ -13,6 +14,8 @@ export class ListGuaranteeComponent implements OnInit {
     search = {
         imei: ''
     };
+    isOffNetWOrk = false;
+    load = false;
 
     constructor(private googleSheetsService: GoogleSheetsService) {
         this.findNew();
@@ -36,9 +39,21 @@ export class ListGuaranteeComponent implements OnInit {
     }
 
     findNew() {
+        this.load = true;
         this.googleSheetsService.findAll().subscribe((value: SheetsGoogle) => {
+            this.load = false;
+
             this.valuesAll = value.values.reverse();
             this.valuesShow = this.valuesAll;
+            localStorage.setItem(LocalStorage.LIST_GUARANTEE, JSON.stringify(this.valuesAll));
+        }, error1 => {
+            this.valuesAll = JSON.parse(localStorage.getItem(LocalStorage.LIST_GUARANTEE));
+            this.valuesShow = this.valuesAll;
+            this.isOffNetWOrk = true;
+            this.load = false;
+
+        }, () => {
+            this.load = false;
         });
         this.resetSearch();
     }
