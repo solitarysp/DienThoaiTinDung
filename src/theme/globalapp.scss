@@ -1,3 +1,5 @@
+@import "variables";
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 ion-menu-button {
   color: var(--ion-color-primary);
 }
@@ -25,4 +27,11 @@ ion-menu-button {
 
 #container a {
   text-decoration: none;
+
+
 }
+
+.app-margin-bottom{
+margin-bottom: 88px;
+}
+

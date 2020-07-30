@@ -1,7 +1,8 @@
 {
   "name": "DienThoaiTinDung",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
