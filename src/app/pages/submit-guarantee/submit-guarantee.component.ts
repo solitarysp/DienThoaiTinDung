@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UtilsService} from '../service/utils.service';
+import {UtilsService} from '../../share/service/utils.service';
 
 @Component({
     selector: 'app-submit-guarantee',
