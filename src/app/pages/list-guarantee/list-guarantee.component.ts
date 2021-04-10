@@ -33,7 +33,12 @@ export class ListGuaranteeComponent implements OnInit {
     findByImei(imei: string) {
         this.valuesShow = this.valuesAll.filter((value: [string]) => {
             // @ts-ignore
-            return value[3].indexOf(imei) >= 0;
+            if (value && value[3]) {
+                // @ts-ignore
+                return value[3].indexOf(imei) >= 0;
+
+            }
+            return false;
         });
 
     }
