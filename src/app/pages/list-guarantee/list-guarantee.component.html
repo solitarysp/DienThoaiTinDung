@@ -9,7 +9,9 @@
 
 <ion-content [fullscreen]="true">
     <div class="pl-3 pr-3 app-margin-bottom pt-5">
-        <div class="alert alert-danger" *ngIf="isOffNetWOrk">Bị mất mạng hoặc lấy dữ liệu mới nhất thất bại. <br> Sẽ sử dụng dữ liệu lần cuối lấy được để hiển thị</div>
+        <div class="alert alert-danger" *ngIf="isOffNetWOrk">Bị mất mạng hoặc lấy dữ liệu mới nhất thất bại. <br> Sẽ sử
+            dụng dữ liệu lần cuối lấy được để hiển thị
+        </div>
         <div class="alert alert-danger" *ngIf="load">Đang lấy dữ liệu mới, vui lòng chờ.</div>
         <div class="form-group">
             <div class="row pt-4">
@@ -29,19 +31,138 @@
             </div>
         </div>
         <ion-button (click)="findNew()">Lấy tất cả dữ liệu mới</ion-button>
-        <div class="form-group row">
-            <label class="col-3 pt-2">Ngày mua</label>
-            <label class="col-2 pt-2">Tên khách</label>
-            <label class="col-2 pt-2">Máy</label>
-            <label class="col-2 pt-2">Imei</label>
-            <label class="col-3 pt-2">Giá</label>
-            <ng-container *ngFor="let items of valuesShow">
-                <label class="col-3 pt-2">{{items[0]}}</label>
-                <label class="col-2 pt-2">{{items[1]}}</label>
-                <label class="col-2 pt-2">{{items[2]}}</label>
-                <label class="col-2 pt-2">{{items[3]}}</label>
-                <label class="col-3 pt-2">{{items[5].replace('đ', '')}}</label>
-            </ng-container>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-1">Ngày mua</td>
+                    <td class="col-xs-1">Imei</td>
+                    <td class="col-xs-1">Thông tin chi tiết</td>
+                </tr>
+                <tr class="ng-star-inserted" *ngFor="let item of valuesShowDataHtml; let i=index"
+                    [ngClass]="{'phanCach' : i%2 ==0}">
+                    <td class="col-xs-1">{{item.values[0]}}</td>
+                    <td class="col-xs-1">{{item.values[3]}}</td>
+                    <td class="col-xs-1 ">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr class="ng-star-inserted">
+                                    <td class="col-xs-3"><code>Tên khách</code></td>
+                                    <td class="col-xs-9">
+                                        <div>
+                                            <p>{{item.values[1]}}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="ng-star-inserted">
+                                    <td class="col-xs-3"><code>Máy</code></td>
+                                    <td class="col-xs-9">
+                                        <div>
+                                            <p>{{item.values[2]}}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="ng-star-inserted">
+                                    <td class="col-xs-3"><code>Giá</code></td>
+                                    <td class="col-xs-9">
+                                        <div>
+                                            <p>{{item.values[5].replace('đ', '')}}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="ng-star-inserted">
+                                    <td class="col-xs-3"><code>Hành động</code></td>
+                                    <td class="col-xs-9">
+                                        <div>
+                                            <ion-button class="p-0 m-0" (click)="edit(item,template_edit)">Cập nhật
+                                            </ion-button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+        <ng-container *ngIf="valuesShow.length>0">
+            <pagination [maxSize]="5" [(ngModel)]="page" [itemsPerPage]="sizeShowPagination"
+                        [totalItems]="valuesShow?.length"
+                        (pageChanged)="changePagination($event.page)"></pagination>
+
+        </ng-container>
     </div>
 </ion-content>
+
+<ng-template #template_edit>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Cập nhật lại thông tin</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRefEdit?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-3"><code>ID index</code></td>
+                    <td class="col-xs-9">
+                        <div>
+                            <p>{{DataSheetsEdit.id}}</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-3"><code>Ngày mua</code></td>
+                    <td class="col-xs-9">
+                        <div>
+                            <p>{{DataSheetsEdit.values[0]}}</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-3"><code>Tên khách</code></td>
+                    <td class="col-xs-9">
+                        <div>
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[1]">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-3"><code>Máy</code></td>
+                    <td class="col-xs-9">
+                        <div>
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[2]">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-3"><code>Imei</code></td>
+                    <td class="col-xs-9">
+                        <div>
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[3]">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ng-star-inserted">
+                    <td class="col-xs-3"><code>Giá</code></td>
+                    <td class="col-xs-9">
+                        <div>
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[5]">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ion-button class="p-0 m-0" (click)="update(DataSheetsEdit)">
+            Cập nhật
+        </ion-button>
+    </div>
+</ng-template>
