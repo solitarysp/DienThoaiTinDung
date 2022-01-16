@@ -101,7 +101,7 @@ export class ListGuaranteeComponent implements OnInit {
 
     update(dataSheetsEdit: DataSheets) {
         this.googleSheetsService.update(dataSheetsEdit, 'Bearer ya29.A0ARrdaM-LG5FQsKrFLrFDu3R0-nyw0gjn28vGNqoMOUlwxd79AAv7RpNth0qyCWq9IFXcl78aVZknOdwjCBNLeGgKvTD0NliLSV9FyI8jVZxITip1aaDAUp6551rr6Jbt39nsIVx01YxCryjZlwYTiYqGNTdoClSPb7qu').subscribe(value => {
-
+            window.location.reload();
         });
     }
 }
