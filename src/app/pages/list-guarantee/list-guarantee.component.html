@@ -72,14 +72,14 @@
                                     </td>
                                 </tr>
                                 <tr class="ng-star-inserted">
-                                    <td class="col-xs-3"><code>Hành động</code></td>
-                                    <td class="col-xs-9">
-                                        <div>
-                                            <ion-button class="p-0 m-0" (click)="edit(item,template_edit)">Cập nhật
-                                            </ion-button>
-                                        </div>
-                                    </td>
-                                </tr>
+<!--                                    <td class="col-xs-3"><code>Hành động</code></td>-->
+<!--                                    <td class="col-xs-9">-->
+<!--                                        <div>-->
+<!--                                            <ion-button class="p-0 m-0" (click)="edit(item,template_edit)">Cập nhật-->
+<!--                                            </ion-button>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -106,7 +106,7 @@
     </div>
     <div class="modal-body">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered" *ngIf="DataSheetsEdit.values.length>0">
                 <tbody>
                 <tr class="ng-star-inserted">
                     <td class="col-xs-3"><code>ID index</code></td>
@@ -120,7 +120,7 @@
                     <td class="col-xs-3"><code>Ngày mua</code></td>
                     <td class="col-xs-9">
                         <div>
-                            <p>{{DataSheetsEdit.values[0]}}</p>
+                            <p>{{DataSheetsEdit?.values[0]}}</p>
                         </div>
                     </td>
                 </tr>
@@ -128,7 +128,7 @@
                     <td class="col-xs-3"><code>Tên khách</code></td>
                     <td class="col-xs-9">
                         <div>
-                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[1]">
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit?.values[1]">
                         </div>
                     </td>
                 </tr>
@@ -136,7 +136,7 @@
                     <td class="col-xs-3"><code>Máy</code></td>
                     <td class="col-xs-9">
                         <div>
-                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[2]">
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit?.values[2]">
                         </div>
                     </td>
                 </tr>
@@ -144,7 +144,7 @@
                     <td class="col-xs-3"><code>Imei</code></td>
                     <td class="col-xs-9">
                         <div>
-                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[3]">
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit?.values[3]">
                         </div>
                     </td>
                 </tr>
@@ -152,7 +152,7 @@
                     <td class="col-xs-3"><code>Giá</code></td>
                     <td class="col-xs-9">
                         <div>
-                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit.values[5]">
+                            <input placeholder="tenKhach" class="form-control" [(ngModel)]="DataSheetsEdit?.values[5]">
                         </div>
                     </td>
                 </tr>
