@@ -49,10 +49,11 @@ export class ListGuaranteeComponent implements OnInit {
             }
             return false;
         });
-
+        this.changePagination(1);
     }
 
     findNew() {
+        this.isOffNetWOrk = false;
         this.load = true;
         this.googleSheetsService.findAll().subscribe((value: SheetsGoogle) => {
             this.load = false;
