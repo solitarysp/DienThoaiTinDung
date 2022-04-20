@@ -38,13 +38,14 @@
             <label class="col-2 pt-2">Imei</label>
             <label class="col-3 pt-2">Giá</label>
 
-            <ng-container *ngFor="let items of valuesShowDataHtml;let i=index">
-                <label class="col-3 pt-2" [ngClass]="{'borderPhanLine': i%2==0}">{{items.values[0]}}</label>
-                <label class="col-2 pt-2" [ngClass]="{'borderPhanLine': i%2==0}">{{items.values[1]}}</label>
-                <label class="col-2 pt-2" [ngClass]="{'borderPhanLine': i%2==0}">{{items.values[2]}}</label>
-                <label class="col-2 pt-2" [ngClass]="{'borderPhanLine': i%2==0}">{{items.values[3]}}</label>
+            <ng-container *ngFor="let items of valuesShowDataHtml;let i=index" >
+                <label class="col-3 pt-2" [ngClass]="{'borderPhanLine': i%2==0}" (click)="edit(items,template_edit)">{{items.values[0]}}</label>
+                <label class="col-2 pt-2" [ngClass]="{'borderPhanLine': i%2==0}" (click)="edit(items,template_edit)">{{items.values[1]}}</label>
+                <label class="col-2 pt-2" [ngClass]="{'borderPhanLine': i%2==0}" (click)="edit(items,template_edit)">{{items.values[2]}}</label>
+                <label class="col-2 pt-2" [ngClass]="{'borderPhanLine': i%2==0}" (click)="edit(items,template_edit)">{{items.values[3]}}</label>
                 <label class="col-3 pt-2"
                        [ngClass]="{'borderPhanLine': i%2==0}">{{items.values[5].replace('đ', '')}}</label>
+
             </ng-container>
         </div>
         <ng-container *ngIf="valuesShow.length>0">
@@ -122,6 +123,28 @@
     <div class="modal-footer">
         <ion-button class="p-0 m-0" (click)="update(DataSheetsEdit)">
             Cập nhật
+        </ion-button>
+    </div>
+</ng-template>
+
+<ng-template #template_get_token>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Cần đăng nhập để chỉnh sửa </h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalref_template_get_token?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+Hiện tại chưa đăng nhập, cần đăng nhập với tài khoản google Tín Dũng để để chỉnh sửa
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ion-button class="pr-5" (click)="btnLogin()">
+            Đăng nhập
+        </ion-button>
+        <ion-button class="p-0 m-0"  color="danger" (click)="modalref_template_get_token?.hide()">
+            Chỉ xem, không chỉnh sửa
         </ion-button>
     </div>
 </ng-template>

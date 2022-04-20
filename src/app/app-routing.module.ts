@@ -18,6 +18,10 @@ const routes: Routes = [
     {
         path: 'list-guarantee',
         loadChildren: () => import('./pages/list-guarantee/list-guarantee.module').then(m => m.ListGuaranteeModule)
+    },
+    {
+        path: 'get-token',
+        loadChildren: () => import('./pages/get-token/get-token.module').then(m => m.GetTokenModule)
     }
 ];
 

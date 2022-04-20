@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    getTokenCallBack: 'https://tindung.lethanh98.com/get-token'
 };

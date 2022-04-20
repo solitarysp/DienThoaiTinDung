@@ -22,10 +22,9 @@ export class GoogleSheetsService {
         };
         const update: Update = new Update();
         update.values.push(data.values);
-        console.log(update)
         return this.http.put(
             'https://content-sheets.googleapis.com/v4/spreadsheets/1A8_oc6LId0_tQSy7VbcmGTJdRFjgYcsFQoJfJWKw_kM/values/A' + data.id +
-            '?valueInputOption=RAW&alt=json&key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM'
+            '?valueInputOption=RAW&alt=json'
             , update, {headers});
     }
 
