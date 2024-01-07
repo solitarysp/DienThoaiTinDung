@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/list-guarantee/list-guarantee.module').then(m => m.ListGuaranteeModule)
     },
     {
+        path: 'submit-repair-phone',
+        loadChildren: () => import('./pages/submit-repair-phone/submit-repair-phone.module').then(m => m.SubmitRepairPhoneModule)
+    },
+    {
         path: 'get-token',
         loadChildren: () => import('./pages/get-token/get-token.module').then(m => m.GetTokenModule)
     }

@@ -26,6 +26,11 @@ export class AppComponent implements OnInit {
       title: 'Danh sách bảo hành',
       url: '/list-guarantee',
       icon: 'heart'
+    },
+    {
+      title: 'Nhập thông tin máy sửa',
+      url: '/submit-repair-phone',
+      icon: 'heart'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
