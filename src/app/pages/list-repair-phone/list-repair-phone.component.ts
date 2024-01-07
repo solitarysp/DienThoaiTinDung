@@ -7,7 +7,6 @@ import {from, of} from 'rxjs';
 import {delay, skip, take, toArray} from 'rxjs/operators';
 import {LocalStorage} from '../../share/constant/local-storage.enum';
 import {SheetsGoogle} from '../../share/model/sheets-google';
-import {environment} from '../../../environments/environment';
 import {ListRepairPhoneGoogleSheetsService} from '../../share/service/list-repair-phone-google-sheets.service';
 
 @Component({
@@ -15,7 +14,7 @@ import {ListRepairPhoneGoogleSheetsService} from '../../share/service/list-repai
     templateUrl: './list-repair-phone.component.html',
     styleUrls: ['./list-repair-phone.component.scss']
 })
-export class ListRepairPhoneComponent implements OnInit {
+export class ListRepairPhoneComponent {
     @ViewChild('template_get_token')
     private TEMPLATE_GET_TOKEN: TemplateRef<any>;
 
@@ -68,11 +67,11 @@ export class ListRepairPhoneComponent implements OnInit {
                 this.dataSheetses.push(item);
             });
             this.valuesShow = this.dataSheetses.reverse();
-            localStorage.setItem(LocalStorage.LIST_GUARANTEE, JSON.stringify(this.dataSheetses));
+            localStorage.setItem(LocalStorage.LIST_REPAIR_PHONE, JSON.stringify(this.dataSheetses));
             this.changePagination(1);
         }, error1 => {
             console.log('Local');
-            this.dataSheetses = JSON.parse(localStorage.getItem(LocalStorage.LIST_GUARANTEE));
+            this.dataSheetses = JSON.parse(localStorage.getItem(LocalStorage.LIST_REPAIR_PHONE));
             this.valuesShow = this.dataSheetses.reverse();
             this.isOffNetWOrk = true;
             this.load = false;
