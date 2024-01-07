@@ -28,8 +28,13 @@ export class AppComponent implements OnInit {
       icon: 'heart'
     },
     {
-      title: 'Nhập thông tin máy sửa',
+      title: 'Nhập thông tin bảo hành máy sửa',
       url: '/submit-repair-phone',
+      icon: 'heart'
+    },
+    {
+      title: 'Danh sách thông tin bảo hành máy sửa',
+      url: '/list-repair-phone',
       icon: 'heart'
     }
   ];
