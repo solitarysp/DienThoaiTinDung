@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Danh sách thông tin bảo hành máy sửa</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="pl-3 pr-3 app-margin-bottom pt-5">
+        <div class="alert alert-danger" *ngIf="isOffNetWOrk">Bị mất mạng hoặc lấy dữ liệu mới nhất thất bại. <br> Sẽ sử
+            dụng dữ liệu lần cuối lấy được để hiển thị
+        </div>
+        <div class="alert alert-danger" *ngIf="load">Đang lấy dữ liệu mới, vui lòng chờ.</div>
+        <div class="form-group">
+            <div class="row pt-4">
+                <label class="col-2 pt-2">
+                    Tổng: {{valuesShow.length}}
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row pt-4">
+                <label class="col-2 pt-2">Imei</label>
+                <div class="col-4">
+                    <input type="txt" placeholder="Imei" class="form-control"
+                           [(ngModel)]="search.imei" name="Imei">
+                </div>
+                <ion-button class="p-0 m-0" (click)="findByImei(search.imei)">Tìm bởi imei</ion-button>
+            </div>
+        </div>
+        <ion-button (click)="findNew()">Lấy tất cả dữ liệu mới</ion-button>
+        <div class="form-group row">
+            <label class="col-2 ">Ngày mua</label>
+            <label class="col-2 ">Tên khách</label>
+            <label class="col-4 ">Thông tin</label>
+            <label class="col-2 ">Giá</label>
+            <label class="col-2 ">Thời gian bảo hành</label>
+
+            <ng-container *ngFor="let items of valuesShowDataHtml;let i=index">
+                <label class="col-2 " [ngClass]="{'chan': i%2==0}">{{items.values[0]}}</label>
+                <label class="col-2 " [ngClass]="{'chan': i%2==0}">{{items.values[1]}}</label>
+                <label class="col-4 " [ngClass]="{'chan': i%2==0}">
+                    Tên máy: {{items.values[2]}} <br/> <br/>
+                    Imei: {{items.values[3]}} <br/> <br/>
+                    Lỗi đã sửa: {{items.values[4]}}</label>
+                <label class="col-2 "
+                       [ngClass]="{'chan': i%2==0}">{{items.values[5].replace('đ', '')}}</label>
+                <label class="col-2 " [ngClass]="{'chan': i%2==0}">{{items.values[6]}}</label>
+
+            </ng-container>
+        </div>
+        <ng-container *ngIf="valuesShow.length>0">
+            <pagination [maxSize]="5" [(ngModel)]="page" [itemsPerPage]="sizeShowPagination"
+                        [totalItems]="valuesShow?.length"
+                        (pageChanged)="changePagination($event.page)"></pagination>
+
+        </ng-container>
+    </div>
+</ion-content>
+
+
