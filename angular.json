@@ -27,6 +27,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "dist/index.html",
+                "output": "404.html"
+              },
+              {
+                "glob": "**/*",
                 "input": "src/static",
                 "output": "./"
               },
