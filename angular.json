@@ -48,7 +48,7 @@
           },
           "configurations": {
             "production": {
-              "outputPath": "dist/tindung.lethanh98",
+              "outputPath": "dist",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
